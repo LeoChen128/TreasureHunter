@@ -21,7 +21,7 @@ public class Town
     {
         this.shop = shop;
         this.terrain = getNewTerrain();
-
+        Terrain previousTerrain = terrain;
         // the hunter gets set using the hunterArrives method, which
         // gets called from a client class
         hunter = null;
@@ -122,6 +122,15 @@ public class Town
                 printMessage += "\nYou lost the brawl and pay " +  goldDiff + " gold.";
                 hunter.changeGold(-1 * goldDiff);
             }
+        }
+    }
+
+    public String treasureHunt() {
+        double random = Math.random();
+        if (random <= 0.25) {
+            return "You found nothing!";
+        } else {
+            return "You found a treasure!";
         }
     }
 

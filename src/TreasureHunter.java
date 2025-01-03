@@ -4,6 +4,7 @@
  * It handles all of the display based on the messages it receives from the Town object.
  *
  */
+import java.util.Locale;
 import java.util.Scanner;
 
 public class TreasureHunter
@@ -110,6 +111,7 @@ public class TreasureHunter
             System.out.println("(S)ell something at the shop.");
             System.out.println("(M)ove on to a different town.");
             System.out.println("(L)ook for trouble!");
+            System.out.println("(H)unt for treasure!");
             System.out.println("Give up the hunt and e(X)it.");
             System.out.println();
             System.out.print("What's your next move? ");
@@ -141,6 +143,10 @@ public class TreasureHunter
         else if (choice.equals("L") || choice.equals("l"))
         {
             currentTown.lookForTrouble();
+        }
+        else if(choice.equals("H") || choice.equals("h"))
+        {
+            System.out.println(currentTown.treasureHunt());
         }
         else if (choice.equals("X") || choice.equals("x"))
         {
