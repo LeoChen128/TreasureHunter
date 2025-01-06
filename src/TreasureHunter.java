@@ -13,6 +13,7 @@ public class TreasureHunter
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private boolean easyMode;
 
     //Constructor
     /**
@@ -24,6 +25,7 @@ public class TreasureHunter
         currentTown = null;
         hunter = null;
         hardMode = false;
+        easyMode = false;
     }
 
     // starts the game; this is the only public method
@@ -49,12 +51,14 @@ public class TreasureHunter
         // set hunter instance variable
         hunter = new Hunter(name, 10);
 
-        System.out.print("Hard mode? (y/n): ");
-        String hard = scanner.nextLine();
-        if (hard.equals("y") || hard.equals("Y"))
-        {
-            hardMode = true;
-        }
+        System.out.print("(H)ard mode or (E)asy mode? (press enter for regular mode): ");
+        String option = scanner.nextLine();
+//        if (option.equals("h") || option.equals("H"))
+//        {
+//            hardMode = true;
+//        } else if (option.equals(("e")) ||) {
+//
+//        }
     }
 
     /**
