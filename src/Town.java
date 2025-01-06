@@ -69,8 +69,10 @@ public class Town
             printMessage = "You used your " + item + " to cross the " + terrain.getTerrainName() + ".";
             if (checkItemBreak())
             {
-                hunter.removeItemFromKit(item);
-                printMessage += "\nUnfortunately, your " + item + " broke.";
+                if (hunter.getOriginalGold() != 25){
+                    hunter.removeItemFromKit(item);
+                    printMessage += "\nUnfortunately, your " + item + " broke.";
+                }
             }
 
             return true;
@@ -97,6 +99,10 @@ public class Town
         {
             noTroubleChance = 0.66;
         }
+
+        else if (hunter.getOriginalGold() == 25){
+            noTroubleChance = 0.5;
+        }
         else
         {
             noTroubleChance = 0.33;
@@ -110,7 +116,7 @@ public class Town
         {
             printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
             int goldDiff = (int)(Math.random() * 10) + 1;
-            if (Math.random() > noTroubleChance)
+            if (Math.random() + 0.45 > noTroubleChance)
             {
                 printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
                 printMessage += "\nYou won the brawl and receive " +  goldDiff + " gold.";
@@ -175,7 +181,12 @@ public class Town
      */
     private boolean checkItemBreak()
     {
-        double rand = Math.random();
-        return (rand < 0.5);
+        if (hunter.getOriginalGold() != 25) {
+            double rand = Math.random();
+            return (rand < 0.5);
+        }
+        else{
+            return false;
+        }
     }
 }
