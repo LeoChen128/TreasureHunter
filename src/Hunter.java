@@ -11,6 +11,7 @@ public class Hunter
     private String hunterName;
     private String kit;
     private int gold;
+    private int originalGold;
 
     //Constructor
     /**
@@ -23,9 +24,19 @@ public class Hunter
         this.hunterName = hunterName;
         kit = "";
         gold = startingGold;
+        originalGold = startingGold;
     }
 
     //Accessors
+
+    public int getOriginalGold(){
+        return originalGold;
+    }
+
+    public void setOriginalGold(int newOriginalGold){
+        originalGold = newOriginalGold;
+    }
+
     public String getHunterName()
     {
         return hunterName;

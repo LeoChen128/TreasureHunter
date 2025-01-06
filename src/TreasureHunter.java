@@ -28,6 +28,11 @@ public class TreasureHunter
         easyMode = false;
     }
 
+    public boolean getEasyMode(){
+        return easyMode;
+    }
+
+
     // starts the game; this is the only public method
     public void play ()
     {
@@ -58,6 +63,15 @@ public class TreasureHunter
             hardMode = true;
         }
 
+        else{
+            System.out.println("Easy mode? (y/n): ");
+            String easy = scanner.nextLine().toLowerCase();
+            if (easy.equals("y")){
+                easyMode = true;
+                hunter.changeGold(15);
+                hunter.setOriginalGold(25);
+            }
+        }
     }
 
     /**
@@ -74,6 +88,13 @@ public class TreasureHunter
 
             // and the town is "tougher"
             toughness = 0.75;
+        }
+        if (easyMode){
+            // In easy mode, you get more money back when you sell items
+            markdown = 1;
+
+            // The town is "easier," or less "tough"
+            toughness = 0.2;
         }
 
         // note that we don't need to access the Shop object
@@ -133,6 +154,7 @@ public class TreasureHunter
         if (choice.equals("B") || choice.equals("b") || choice.equals("S") || choice.equals("s"))
         {
             currentTown.enterShop(choice);
+
         }
         else if (choice.equals("M") || choice.equals("m"))
         {
