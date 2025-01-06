@@ -146,7 +146,7 @@ public class TreasureHunter
         }
         else if(choice.equals("H") || choice.equals("h"))
         {
-            System.out.println(currentTown.treasureHunt());
+//            System.out.println(currentTown.treasureHunt());
         }
         else if (choice.equals("X") || choice.equals("x"))
         {

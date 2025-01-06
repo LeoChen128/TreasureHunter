@@ -125,14 +125,14 @@ public class Town
         }
     }
 
-    public String treasureHunt() {
-        double random = Math.random();
-        if (random <= 0.25) {
-            return "You found nothing!";
-        } else {
-            return "You found a treasure!";
-        }
-    }
+//    public String treasureHunt() {
+//        double random = Math.random();
+//        if (random <= 0.25) {
+//            return "You found nothing!";
+//        } else {
+//            return "You found a treasure!";
+//        }
+//    }
 
     public String toString()
     {
