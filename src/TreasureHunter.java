@@ -159,25 +159,24 @@ public class TreasureHunter
             String choice = "";
 
 
-        while (!(choice.equals("X") || choice.equals("x")))
-        {
-            System.out.println();
-            System.out.println(currentTown.getLatestNews());
-            System.out.println("***");
-            System.out.println(hunter);
-            System.out.println(currentTown);
-            System.out.println("(B)uy something at the shop.");
-            System.out.println("(S)ell something at the shop.");
-            System.out.println("(M)ove on to a different town.");
-            System.out.println("(L)ook for trouble!");
-            System.out.println("(H)unt for treasure!");
-            System.out.println("Give up the hunt and e(X)it.");
-            System.out.println();
-            System.out.print("What's your next move? ");
-            choice = scanner.nextLine();
-            choice = choice.toUpperCase();
-            processChoice(choice);
-        }
+            while (!(choice.equals("X") || choice.equals("x"))) {
+                System.out.println();
+                System.out.println(currentTown.getLatestNews());
+                System.out.println("***");
+                System.out.println(hunter);
+                System.out.println(currentTown);
+                System.out.println("(B)uy something at the shop.");
+                System.out.println("(S)ell something at the shop.");
+                System.out.println("(M)ove on to a different town.");
+                System.out.println("(L)ook for trouble!");
+                System.out.println("(H)unt for treasure!");
+                System.out.println("Give up the hunt and e(X)it.");
+                System.out.println();
+                System.out.print("What's your next move? ");
+                choice = scanner.nextLine();
+                choice = choice.toUpperCase();
+                processChoice(choice);
+            }
         }
     }
 
@@ -185,28 +184,19 @@ public class TreasureHunter
      * Takes the choice received from the menu and calls the appropriate method to carry out the instructions.
      * @param choice The action to process.
      */
-    private void processChoice(String choice)
-    {
-        if (choice.equals("B") || choice.equals("b") || choice.equals("S") || choice.equals("s"))
-        {
+    private void processChoice(String choice) {
+        if (choice.equals("B") || choice.equals("b") || choice.equals("S") || choice.equals("s")) {
             currentTown.enterShop(choice);
 
-        }
-        else if (choice.equals("M") || choice.equals("m"))
-        {
-            if (currentTown.leaveTown())
-            {
+        } else if (choice.equals("M") || choice.equals("m")) {
+            if (currentTown.leaveTown()) {
                 //This town is going away so print its news ahead of time.
                 System.out.println(currentTown.getLatestNews());
                 enterTown();
             }
-        }
-        else if (choice.equals("L") || choice.equals("l"))
-        {
+        } else if (choice.equals("L") || choice.equals("l")) {
             currentTown.lookForTrouble();
-        }
-        else if(choice.equals("H") || choice.equals("h"))
-        {
+        } else if (choice.equals("H") || choice.equals("h")) {
             if (leftTown) {
 
                 System.out.println(currentTown.treasureHunt());
