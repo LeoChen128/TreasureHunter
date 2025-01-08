@@ -138,25 +138,21 @@ public class Shop
 
     public String inventory()
     {
-        String str = CYAN_BOLD + "Water: " + reset + BLUE + WATER_COST + " gold" + reset +"\n";
-        str += BROWN + "Rope: " + reset + ROPE_COST + " gold" + reset + "\n";
-        str += YELLOW_BRIGHT + "Machete: " + reset + LIGHT_PINK + MACHETE_COST + " gold" + reset +"\n";
-        str += BROWN +  "Horse: " + reset + HORSE_COST + " gold" + reset +"\n";
-        str += ORANGE + "Boat: " + reset + BANANA_YELLOW + BOAT_COST + " gold" + reset +"\n";
+
         String str;
         if (TreasureHunter.getCheatMode()){
-            str = "Water: " + 1 + " gold\n";
-            str += "Rope: " + 1 + " gold\n";
-            str += "Machete: " + 1 + " gold\n";
-            str += "Horse: " + 1 + " gold\n";
-            str += "Boat: " + 1 + " gold\n";
+            str = CYAN_BOLD + "Water: " + reset + BLUE + 1 + " gold" + reset +"\n";
+            str += BROWN + "Rope: " + reset + 1 + " gold" + reset + "\n";
+            str += YELLOW_BRIGHT + "Machete: " + reset + LIGHT_PINK + 1 + " gold" + reset +"\n";
+            str += BROWN +  "Horse: " + reset + 1 + " gold" + reset +"\n";
+            str += ORANGE + "Boat: " + reset + BANANA_YELLOW + 1 + " gold" + reset +"\n";
         }
         else {
-            str = "Water: " + WATER_COST + " gold\n";
-            str += "Rope: " + ROPE_COST + " gold\n";
-            str += "Machete: " + MACHETE_COST + " gold\n";
-            str += "Horse: " + HORSE_COST + " gold\n";
-            str += "Boat: " + BOAT_COST + " gold\n";
+            str = CYAN_BOLD + "Water: " + reset + BLUE + WATER_COST + " gold" + reset +"\n";
+            str += BROWN + "Rope: " + reset + ROPE_COST + " gold" + reset + "\n";
+            str += YELLOW_BRIGHT + "Machete: " + reset + LIGHT_PINK + MACHETE_COST + " gold" + reset +"\n";
+            str += BROWN +  "Horse: " + reset + HORSE_COST + " gold" + reset +"\n";
+            str += ORANGE + "Boat: " + reset + BANANA_YELLOW + BOAT_COST + " gold" + reset +"\n";
         }
 
         return str;
