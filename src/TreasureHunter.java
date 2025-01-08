@@ -158,24 +158,26 @@ public class TreasureHunter
             Scanner scanner = new Scanner(System.in);
             String choice = "";
 
-            while (!(choice.equals("X") || choice.equals("x"))) {
-                System.out.println();
-                System.out.println(currentTown.getLatestNews());
-                System.out.println("***");
-                System.out.println(hunter);
-                System.out.println(currentTown);
-                System.out.println("(B)uy something at the shop.");
-                System.out.println("(S)ell something at the shop.");
-                System.out.println("(M)ove on to a different town.");
-                System.out.println("(L)ook for trouble!");
-                System.out.println("(H)unt for treasure!");
-                System.out.println("Give up the hunt and e(X)it.");
-                System.out.println();
-                System.out.print("What's your next move? ");
-                choice = scanner.nextLine();
-                choice = choice.toUpperCase();
-                processChoice(choice);
-            }
+
+        while (!(choice.equals("X") || choice.equals("x")))
+        {
+            System.out.println();
+            System.out.println(currentTown.getLatestNews());
+            System.out.println("***");
+            System.out.println(hunter);
+            System.out.println(currentTown);
+            System.out.println("(B)uy something at the shop.");
+            System.out.println("(S)ell something at the shop.");
+            System.out.println("(M)ove on to a different town.");
+            System.out.println("(L)ook for trouble!");
+            System.out.println("(H)unt for treasure!");
+            System.out.println("Give up the hunt and e(X)it.");
+            System.out.println();
+            System.out.print("What's your next move? ");
+            choice = scanner.nextLine();
+            choice = choice.toUpperCase();
+            processChoice(choice);
+        }
         }
     }
 
@@ -244,6 +246,15 @@ public class TreasureHunter
             }
 
         }
+        else if (choice.equals("C") || choice.equals("c")) {
+            Scanner scan = new Scanner(System.in);
+            System.out.println("How much do you wager?: ");
+            int value = scan.nextInt();
+            Scanner s = new Scanner(System.in);
+            System.out.println("Choose a number between 1-12: ");
+            int number = s.nextInt();
+            //currentTown.diceResult(number,value);
+        }
         else if (choice.equals("X") || choice.equals("x"))
         {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
@@ -252,5 +263,6 @@ public class TreasureHunter
         {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
+
     }
 }
