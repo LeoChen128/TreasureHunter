@@ -87,6 +87,33 @@ public class Town
         shop.enter(hunter, choice);
     }
 
+    public int diceRoll(){
+        int rollOne = (int) (Math.random() * 6) + 1;
+        int rollTwo = (int) (Math.random() * 6) + 1;
+        return rollOne + rollTwo;
+    }
+
+    public void diceResult(int choice){
+        int total = diceRoll();
+        int bound1 = total + 2;
+        int bound2 = total - 2;
+        int hunterGold = hunter.getGold();
+        if (hunter.getGold() == 0 || choice > hunter.getGold()){
+            printMessage = "You don't have enough gold!";
+        }
+        else{
+            hunter.changeGold(-1 * choice);
+            if(choice == bound2 || choice == bound1){
+                hunter.changeGold(choice);
+            } else if (choice == total) {
+                hunter.changeGold(choice * 2);
+            }
+            else{
+                hunter.changeGold(-1 * hunterGold);
+            }
+        }
+    }
+
     /**
      * Gives the hunter a chance to fight for some gold.<p>
      * The chances of finding a fight and winning the gold are based on the toughness of the town.<p>
