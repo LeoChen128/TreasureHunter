@@ -4,6 +4,8 @@
  * It handles all of the display based on the messages it receives from the Town object.
  *
  */
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -15,6 +17,12 @@ public class TreasureHunter
     private boolean hardMode;
     private boolean easyMode;
     private static boolean cheatMode;
+    private boolean gameOver;
+    private boolean rubies;
+    private boolean emeralds;
+    private boolean opals;
+    private boolean leftTown;
+    private List<String > choices = new ArrayList<>();
 
     //Constructor
     /**
@@ -28,6 +36,11 @@ public class TreasureHunter
         hardMode = false;
         easyMode = false;
         cheatMode = false;
+        gameOver = false;
+        rubies = false;
+        emeralds = false;
+        opals = false;
+        leftTown = false;
     }
 
     public boolean getEasyMode(){
@@ -141,27 +154,28 @@ public class TreasureHunter
      */
     private void showMenu()
     {
-        Scanner scanner = new Scanner(System.in);
-        String choice = "";
+        if (!gameOver) {
+            Scanner scanner = new Scanner(System.in);
+            String choice = "";
 
-        while (!(choice.equals("X") || choice.equals("x")))
-        {
-            System.out.println();
-            System.out.println(currentTown.getLatestNews());
-            System.out.println("***");
-            System.out.println(hunter);
-            System.out.println(currentTown);
-            System.out.println("(B)uy something at the shop.");
-            System.out.println("(S)ell something at the shop.");
-            System.out.println("(M)ove on to a different town.");
-            System.out.println("(L)ook for trouble!");
-            System.out.println("(H)unt for treasure!");
-            System.out.println("Give up the hunt and e(X)it.");
-            System.out.println();
-            System.out.print("What's your next move? ");
-            choice = scanner.nextLine();
-            choice = choice.toUpperCase();
-            processChoice(choice);
+            while (!(choice.equals("X") || choice.equals("x"))) {
+                System.out.println();
+                System.out.println(currentTown.getLatestNews());
+                System.out.println("***");
+                System.out.println(hunter);
+                System.out.println(currentTown);
+                System.out.println("(B)uy something at the shop.");
+                System.out.println("(S)ell something at the shop.");
+                System.out.println("(M)ove on to a different town.");
+                System.out.println("(L)ook for trouble!");
+                System.out.println("(H)unt for treasure!");
+                System.out.println("Give up the hunt and e(X)it.");
+                System.out.println();
+                System.out.print("What's your next move? ");
+                choice = scanner.nextLine();
+                choice = choice.toUpperCase();
+                processChoice(choice);
+            }
         }
     }
 
@@ -191,7 +205,44 @@ public class TreasureHunter
         }
         else if(choice.equals("H") || choice.equals("h"))
         {
-//            System.out.println(currentTown.treasureHunt());
+            if (leftTown) {
+
+                System.out.println(currentTown.treasureHunt());
+                if (currentTown.treasureHunt() == 1) {
+                    System.out.println("You got the rubies!");
+                    if (!rubies) {
+                        rubies = true;
+                    } else {
+                        System.out.println("You already have rubies though... :(");
+                    }
+                } else if (currentTown.treasureHunt() == 2) {
+                    System.out.println("You got the emeralds!!");
+                    if (!emeralds) {
+                        emeralds = true;
+                    } else {
+                        System.out.println("You already have emeralds though... :(");
+                    }
+                } else if (currentTown.treasureHunt() == 3) {
+                    System.out.println("You got the opals!");
+                    if (!opals) {
+                        opals = true;
+                    } else {
+                        System.out.println("You already have opals though... :(");
+                    }
+                } else if (currentTown.treasureHunt() == 4) {
+                    System.out.println("You got nothing :(");
+                }
+
+                if (rubies) {
+                    if (emeralds) {
+                        if (opals) {
+                            System.out.println("Congratulations, you won!!!");
+                            gameOver = true;
+                        }
+                    }
+                }
+            }
+
         }
         else if (choice.equals("X") || choice.equals("x"))
         {
