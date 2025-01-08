@@ -14,6 +14,7 @@ public class TreasureHunter
     private Hunter hunter;
     private boolean hardMode;
     private boolean easyMode;
+    private static boolean cheatMode;
 
     //Constructor
     /**
@@ -26,6 +27,7 @@ public class TreasureHunter
         hunter = null;
         hardMode = false;
         easyMode = false;
+        cheatMode = false;
     }
 
     public boolean getEasyMode(){
@@ -41,6 +43,10 @@ public class TreasureHunter
         showMenu();
     }
 
+    public static boolean getCheatMode(){
+        return cheatMode;
+    }
+
     /**
      * Creates a hunter object at the beginning of the game and populates the class member variable with it.
      */
@@ -53,23 +59,37 @@ public class TreasureHunter
         System.out.print("What's your name, Hunter? ");
         String name = scanner.nextLine();
 
+        name = name.toLowerCase();
+
+        if (name.equals("cheat")){
+            cheatMode = true;
+
+            System.out.println("You have entered cheat mode. Reenter your name.");
+            System.out.print("What's your name, Hunter? ");
+            name = scanner.nextLine();
+        }
+
         // set hunter instance variable
         hunter = new Hunter(name, 10);
 
-        System.out.print("Hard mode? (y/n): ");
-        String hard = scanner.nextLine();
-        if (hard.equals("y") || hard.equals("Y"))
-        {
-            hardMode = true;
-        }
 
-        else{
-            System.out.println("Easy mode? (y/n): ");
-            String easy = scanner.nextLine().toLowerCase();
-            if (easy.equals("y")){
-                easyMode = true;
-                hunter.changeGold(15);
-                hunter.setOriginalGold(25);
+        if (!cheatMode) {
+            System.out.print("Hard mode? (y/n): ");
+            String hard = scanner.nextLine();
+            if (hard.equals("y") || hard.equals("Y")) {
+                if (!cheatMode) {
+                    hardMode = true;
+                }
+            } else {
+                System.out.println("Easy mode? (y/n): ");
+                String easy = scanner.nextLine().toLowerCase();
+                if (easy.equals("y")) {
+                    if (!cheatMode) {
+                        easyMode = true;
+                        hunter.changeGold(15);
+                        hunter.setOriginalGold(25);
+                    }
+                }
             }
         }
     }
