@@ -196,9 +196,12 @@ public class TreasureHunter
         }
         else if (choice.equals("C") || choice.equals("c")) {
             Scanner scan = new Scanner(System.in);
-            System.out.println("How much do you wager?");
+            System.out.println("How much do you wager?: ");
             int value = scan.nextInt();
-            currentTown.diceResult(value);
+            Scanner s = new Scanner(System.in);
+            System.out.println("Choose a number between 1-12: ");
+            int number = s.nextInt();
+            currentTown.diceResult(number,value);
         }
         else if (choice.equals("X") || choice.equals("x"))
         {

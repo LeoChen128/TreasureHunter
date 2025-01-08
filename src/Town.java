@@ -93,8 +93,9 @@ public class Town
         return rollOne + rollTwo;
     }
 
-    public void diceResult(int choice){
+    public void diceResult(int choice, int wager){
         int total = diceRoll();
+        System.out.println(total);
         int bound1 = total + 2;
         int bound2 = total - 2;
         int hunterGold = hunter.getGold();
@@ -103,13 +104,16 @@ public class Town
         }
         else{
             hunter.changeGold(-1 * choice);
-            if(choice == bound2 || choice == bound1){
+            if(Math.abs(bound2 - choice) <= 2 || Math.abs(choice - bound1) <= 2){
                 hunter.changeGold(choice);
+                printMessage = "Yer guess was close to the actual number. Here's yer gold back";
             } else if (choice == total) {
                 hunter.changeGold(choice * 2);
+                printMessage = "Wow, you actually won.... Here's yer gold :(";
             }
             else{
                 hunter.changeGold(-1 * hunterGold);
+                printMessage = "HA HA HA, YOU LOST! Give up yer gold :)";
             }
         }
     }
