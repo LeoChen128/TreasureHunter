@@ -23,6 +23,7 @@ public class TreasureHunter
     private boolean opals;
     private boolean leftTown;
     private List<String > choices = new ArrayList<>();
+    private String penultimateChoice;
 
     //Constructor
     /**
@@ -65,6 +66,7 @@ public class TreasureHunter
      */
     private void welcomePlayer()
     {
+        choices.add("M");
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to TREASURE HUNTER!");
@@ -176,6 +178,15 @@ public class TreasureHunter
                 choice = scanner.nextLine();
                 choice = choice.toUpperCase();
                 processChoice(choice);
+                if (choice.equals("M")){
+                    if (currentTown.leaveTown()){
+                        choices.add("M");
+                    }
+                }
+                choices.add(choice);
+                if (choice.equals("H")){
+                    choices.clear();
+                }
             }
         }
     }
@@ -197,8 +208,13 @@ public class TreasureHunter
         } else if (choice.equals("L") || choice.equals("l")) {
             currentTown.lookForTrouble();
         } else if (choice.equals("H") || choice.equals("h")) {
-            if (leftTown) {
+            if (choices.isEmpty()){
+                System.out.println();
+                System.out.println("Lmao u thought u could fool us?? U gotta travel before u can hunt for treasure again, buddy.");
+            }
+            else if (!choices.getFirst().equals("H") && choices.contains("M")) {
 
+                System.out.println();
                 System.out.println(currentTown.treasureHunt());
                 if (currentTown.treasureHunt() == 1) {
                     System.out.println("You got the rubies!");
@@ -235,6 +251,7 @@ public class TreasureHunter
                 }
             }
 
+
         }
         else if (choice.equals("C") || choice.equals("c")) {
             Scanner scan = new Scanner(System.in);
@@ -243,7 +260,7 @@ public class TreasureHunter
             Scanner s = new Scanner(System.in);
             System.out.println("Choose a number between 1-12: ");
             int number = s.nextInt();
-            //currentTown.diceResult(number,value);
+            currentTown.diceResult(number,value);
         }
         else if (choice.equals("X") || choice.equals("x"))
         {
