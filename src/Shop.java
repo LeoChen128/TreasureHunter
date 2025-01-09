@@ -4,6 +4,8 @@
  */
 import java.util.Locale;
 import java.util.Scanner;
+import java.awt.Color;
+import javax.swing.*;
 
 public class Shop
 {
@@ -95,64 +97,34 @@ public class Shop
      * @return  the string representing the shop's items available for purchase and their prices
      */
     public static final String reset = "\u001B[0m";
+    public static final String random = "\033[0;189m";
     public static final String BLACK = "\033[0;30m";   // BLACK
-    public static final String RED = "\033[0;31m";     // RED
-    public static final String GREEN = "\033[0;32m";   // GREEN
-    public static final String YELLOW = "\033[0;33m";  // YELLOW
     public static final String BLUE = "\033[0;34m";    // BLUE
-    public static final String PURPLE = "\033[0;35m";  // PURPLE
-    public static final String CYAN = "\033[0;36m";    // CYAN
     public static final String WHITE = "\033[0;37m";   // WHITE
-    public static final String LIGHT_PURPLE = "\033[38;2;200;0;200m"; //LIGHT PURPLE
-    public static final String TEAL = "\033[38;2;0;225;221m"; //TEAL
     public static final String ORANGE = "\033[38;2;225;153;0m"; //ORANGE
-    public static final String LIGHT_GREEN = "\033[38;2;136;255;0m"; //LIGHT GREEN
-    public static final String LIGHT_BLUE = "\033[38;2;120;172;255m"; //LIGHT BLUE
-    public static final String DARK_BLUE = "\033[38;2;72;0;255m"; //DARK BLUE
-    public static final String ROSY_PINK = "\033[38;2;255;0;162m"; //ROSY PINK
     public static final String BROWN = "\033[38;2;135;82;62m"; //BROWN
-    public static final String FOREST_GREEN = "\033[38;2;62;135;81m"; //FOREST GREEN
     public static final String BANANA_YELLOW = "\033[38;2;240;238;113m"; //BANANA YELLOW
-    public static final String DARK_RED = "\033[38;2;145;40;16m"; //DARK RED
-    public static final String LIGHT_PINK = "\033[38;2;255;153;240m"; //LIGHT PINK
-
-
-    public static final String BLACK_BOLD = "\033[1;30m";  // BLACK
-    public static final String RED_BOLD = "\033[1;31m";    // RED
-    public static final String GREEN_BOLD = "\033[1;32m";  //  Darkish GREEN
-    public static final String YELLOW_BOLD = "\033[1;33m"; // YELLOW
-    public static final String BLUE_BOLD = "\033[1;34m";   // BLUE
-    public static final String PURPLE_BOLD = "\033[1;35m"; // PURPLE
     public static final String CYAN_BOLD = "\033[1;36m";   // CYAN
     public static final String GRAY_BOLD = "\033[1;37m";  // gray
-
-    public static final String BLACK_BRIGHT = "\033[0;90m";  // BLACK
-    public static final String RED_BRIGHT = "\033[0;91m";    // RED
-    public static final String GREEN_BRIGHT = "\033[0;92m";  // GREEN
     public static final String YELLOW_BRIGHT = "\033[0;93m"; // YELLOW
-    public static final String BLUE_BRIGHT = "\033[0;94m";   // BLUE
-    public static final String PURPLE_BRIGHT = "\033[0;95m"; // PURPLE
-    public static final String CYAN_BRIGHT = "\033[0;96m";   // CYAN
-    public static final String WHITE_BRIGHT = "\033[0;97m";  // WHITE
-
 
     public String inventory()
     {
 
         String str;
         if (TreasureHunter.getCheatMode()){
-            str = CYAN_BOLD + "Water: " + reset + BLUE + 1 + " gold" + reset +"\n";
-            str += BROWN + "Rope: " + reset + 1 + " gold" + reset + "\n";
-            str += YELLOW_BRIGHT + "Machete: " + reset + LIGHT_PINK + 1 + " gold" + reset +"\n";
-            str += BROWN +  "Horse: " + reset + 1 + " gold" + reset +"\n";
-            str += ORANGE + "Boat: " + reset + BANANA_YELLOW + 1 + " gold" + reset +"\n";
+            str = CYAN_BOLD + "🥤 Water: " + reset + BLUE + 1 + reset + YELLOW_BRIGHT + " gold" + reset +"\n";
+            str += BROWN + "🧵 Rope: " + reset + WHITE + 1 + reset + YELLOW_BRIGHT + " gold" + reset + "\n";
+            str += YELLOW_BRIGHT + "🔪 Machete: " + reset + GRAY_BOLD + 1 + reset + YELLOW_BRIGHT + " gold" + reset +"\n";
+            str += BROWN +  "🐎 Horse: " + reset + ORANGE + 1 + reset + YELLOW_BRIGHT + " gold" + reset +"\n";
+            str += ORANGE + "⛵ Boat: " + reset + BANANA_YELLOW + 1 + reset + YELLOW_BRIGHT + " gold" + reset +"\n";
         }
         else {
-            str = CYAN_BOLD + "Water: " + reset + BLUE + WATER_COST + " gold" + reset +"\n";
-            str += BROWN + "Rope: " + reset + ROPE_COST + " gold" + reset + "\n";
-            str += YELLOW_BRIGHT + "Machete: " + reset + LIGHT_PINK + MACHETE_COST + " gold" + reset +"\n";
-            str += BROWN +  "Horse: " + reset + HORSE_COST + " gold" + reset +"\n";
-            str += ORANGE + "Boat: " + reset + BANANA_YELLOW + BOAT_COST + " gold" + reset +"\n";
+            str = CYAN_BOLD + "🥤 Water: " + reset + BLUE + WATER_COST + reset + YELLOW_BRIGHT + " gold" + reset +"\n";
+            str += BROWN + "🧵 Rope: " + reset + WHITE + ROPE_COST + reset + YELLOW_BRIGHT + " gold" + reset + "\n";
+            str += BLACK + "🔪 Machete: " + reset + GRAY_BOLD + MACHETE_COST + reset + YELLOW_BRIGHT + " gold" + reset +"\n";
+            str += BROWN +  "🐎 Horse:  " + reset + ORANGE + HORSE_COST + reset + YELLOW_BRIGHT + " gold" + reset +"\n";
+            str += ORANGE + "⛵ Boat: " + reset + BANANA_YELLOW + BOAT_COST + reset + YELLOW_BRIGHT + " gold" + reset +"\n";
         }
 
         return str;
