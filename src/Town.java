@@ -13,6 +13,7 @@ public class Town
     private String printMessage;
     private boolean toughTown;
 
+
     //Constructor
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
@@ -170,7 +171,8 @@ public class Town
 
     public Integer treasureHunt() {
         Random rand = new Random();
-        return rand.nextInt(4) + 1;
+
+        return rand.nextInt(101) + 1;
     }
 
     public String toString()
