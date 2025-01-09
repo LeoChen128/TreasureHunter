@@ -15,6 +15,17 @@ public class Shop
     private static final int MACHETE_COST = 6;
     private static final int HORSE_COST = 12;
     private static final int BOAT_COST = 20;
+    public static final String reset = "\u001B[0m";
+    public static final String BLACK = "\033[0;30m";   // BLACK
+    public static final String BLUE = "\033[0;34m";    // BLUE
+    public static final String WHITE = "\033[0;37m";   // WHITE
+    public static final String ORANGE = "\033[38;2;225;153;0m"; //ORANGE
+    public static final String BROWN = "\033[38;2;135;82;62m"; //BROWN
+    public static final String BANANA_YELLOW = "\033[38;2;240;238;113m"; //BANANA YELLOW
+    public static final String CYAN_BOLD = "\033[1;36m";   // CYAN
+    public static final String GRAY_BOLD = "\033[1;37m";  // gray
+    public static final String YELLOW_BRIGHT = "\033[0;93m"; // YELLOW
+
 
     // instance variables
     private double markdown;
@@ -96,17 +107,6 @@ public class Shop
      *
      * @return  the string representing the shop's items available for purchase and their prices
      */
-    public static final String reset = "\u001B[0m";
-    public static final String random = "\033[0;189m";
-    public static final String BLACK = "\033[0;30m";   // BLACK
-    public static final String BLUE = "\033[0;34m";    // BLUE
-    public static final String WHITE = "\033[0;37m";   // WHITE
-    public static final String ORANGE = "\033[38;2;225;153;0m"; //ORANGE
-    public static final String BROWN = "\033[38;2;135;82;62m"; //BROWN
-    public static final String BANANA_YELLOW = "\033[38;2;240;238;113m"; //BANANA YELLOW
-    public static final String CYAN_BOLD = "\033[1;36m";   // CYAN
-    public static final String GRAY_BOLD = "\033[1;37m";  // gray
-    public static final String YELLOW_BRIGHT = "\033[0;93m"; // YELLOW
 
     public String inventory()
     {
