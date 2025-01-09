@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * The Town Class is where it all happens.
  * The Town is designed to manage all of the things a Hunter can do in town.
@@ -10,6 +12,7 @@ public class Town
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+
 
     //Constructor
     /**
@@ -166,14 +169,11 @@ public class Town
         }
     }
 
-//    public String treasureHunt() {
-//        double random = Math.random();
-//        if (random <= 0.25) {
-//            return "You found nothing!";
-//        } else {
-//            return "You found a treasure!";
-//        }
-//    }
+    public Integer treasureHunt() {
+        Random rand = new Random();
+
+        return rand.nextInt(101) + 1;
+    }
 
     public String toString()
     {

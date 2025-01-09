@@ -4,7 +4,8 @@
  * It handles all of the display based on the messages it receives from the Town object.
  *
  */
-import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TreasureHunter
@@ -15,6 +16,14 @@ public class TreasureHunter
     private boolean hardMode;
     private boolean easyMode;
     private static boolean cheatMode;
+    private boolean gameOver;
+    private boolean rubies;
+    private boolean emeralds;
+    private boolean opals;
+    private boolean leftTown;
+    private List<String > choices = new ArrayList<>();
+    private static int luck;
+    private int moneyWonInCasino;
 
     //Constructor
     /**
@@ -28,6 +37,17 @@ public class TreasureHunter
         hardMode = false;
         easyMode = false;
         cheatMode = false;
+        gameOver = false;
+        rubies = false;
+        emeralds = false;
+        opals = false;
+        leftTown = false;
+        moneyWonInCasino = 0;
+        luck = 0;
+    }
+
+    public static int getLuck(){
+        return luck;
     }
 
     public boolean getEasyMode(){
@@ -52,6 +72,7 @@ public class TreasureHunter
      */
     private void welcomePlayer()
     {
+        choices.add("M");
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to TREASURE HUNTER!");
@@ -141,28 +162,38 @@ public class TreasureHunter
      */
     private void showMenu()
     {
-        Scanner scanner = new Scanner(System.in);
-        String choice = "";
+        if (!gameOver) {
+            Scanner scanner = new Scanner(System.in);
+            String choice = "";
 
-        while (!(choice.equals("X") || choice.equals("x")))
-        {
-            System.out.println();
-            System.out.println(currentTown.getLatestNews());
-            System.out.println("***");
-            System.out.println(hunter);
-            System.out.println(currentTown);
-            System.out.println("(B)uy something at the shop.");
-            System.out.println("(S)ell something at the shop.");
-            System.out.println("(M)ove on to a different town.");
-            System.out.println("(L)ook for trouble!");
-            System.out.println("(H)unt for treasure!");
-            System.out.println("(C)asino!");
-            System.out.println("Give up the hunt and e(X)it.");
-            System.out.println();
-            System.out.print("What's your next move? ");
-            choice = scanner.nextLine();
-            choice = choice.toUpperCase();
-            processChoice(choice);
+
+            while (!(choice.equals("X") || choice.equals("x"))) {
+                System.out.println();
+                System.out.println(currentTown.getLatestNews());
+                System.out.println("***");
+                System.out.println(hunter);
+                System.out.println(currentTown);
+                System.out.println("(B)uy something at the shop.");
+                System.out.println("(S)ell something at the shop.");
+                System.out.println("(M)ove on to a different town.");
+                System.out.println("(L)ook for trouble!");
+                System.out.println("(H)unt for treasure!");
+                System.out.println("Give up the hunt and e(X)it.");
+                System.out.println();
+                System.out.print("What's your next move? ");
+                choice = scanner.nextLine();
+                choice = choice.toUpperCase();
+                processChoice(choice);
+                if (choice.equals("M")){
+                    if (currentTown.leaveTown()){
+                        choices.add("M");
+                    }
+                }
+                choices.add(choice);
+                if (choice.equals("H")){
+                    choices.clear();
+                }
+            }
         }
     }
 
@@ -170,31 +201,101 @@ public class TreasureHunter
      * Takes the choice received from the menu and calls the appropriate method to carry out the instructions.
      * @param choice The action to process.
      */
-    private void processChoice(String choice)
-    {
-        if (choice.equals("B") || choice.equals("b") || choice.equals("S") || choice.equals("s"))
-        {
+    private void processChoice(String choice) {
+        if (choice.equals("B") || choice.equals("b") || choice.equals("S") || choice.equals("s")) {
             currentTown.enterShop(choice);
 
         }
-        else if (choice.equals("M") || choice.equals("m"))
-        {
-            if (currentTown.leaveTown())
-            {
+        else if (choice.equals("M") || choice.equals("m")) {
+            if (currentTown.leaveTown()) {
                 //This town is going away so print its news ahead of time.
                 System.out.println(currentTown.getLatestNews());
                 enterTown();
             }
         }
-        else if (choice.equals("L") || choice.equals("l"))
-        {
+        else if (choice.equals("L") || choice.equals("l")) {
             currentTown.lookForTrouble();
         }
-        else if(choice.equals("H") || choice.equals("h"))
-        {
-//            System.out.println(currentTown.treasureHunt());
+        else if (choice.equals("H") || choice.equals("h")) {
+            if (choices.isEmpty()){
+                System.out.println();
+                System.out.println("Lmao u thought u could fool us?? U gotta travel before u can hunt for treasure again, buddy.");
+            }
+            else if (!choices.getFirst().equals("H") && choices.contains("M")) {
+
+                int minFind;
+                int maxFind;
+
+                if (luck > 0){
+                    System.out.println();
+                    System.out.println(currentTown.treasureHunt());
+                    // NTS: THE NUMBERS FOR LUCK NEED TO BE CHANGED; SEE FREEFORM!
+                    if (currentTown.treasureHunt() >= 1 && currentTown.treasureHunt() <= 25 + luck) {
+                        System.out.println("You got the rubies!");
+                        if (!rubies) {
+                            rubies = true;
+                        } else {
+                            System.out.println("You already have rubies though... :(");
+                        }
+                    } else if (currentTown.treasureHunt() == 2) {
+                        System.out.println("You got the emeralds!!");
+                        if (!emeralds) {
+                            emeralds = true;
+                        } else {
+                            System.out.println("You already have emeralds though... :(");
+                        }
+                    } else if (currentTown.treasureHunt() == 3) {
+                        System.out.println("You got the opals!");
+                        if (!opals) {
+                            opals = true;
+                        } else {
+                            System.out.println("You already have opals though... :(");
+                        }
+                    } else if (currentTown.treasureHunt() == 4) {
+                        System.out.println("You got nothing :(");
+                    }
+                }
+                System.out.println();
+                System.out.println(currentTown.treasureHunt());
+                if (currentTown.treasureHunt() == 1) {
+                    System.out.println("You got the rubies!");
+                    if (!rubies) {
+                        rubies = true;
+                    } else {
+                        System.out.println("You already have rubies though... :(");
+                    }
+                } else if (currentTown.treasureHunt() == 2) {
+                    System.out.println("You got the emeralds!!");
+                    if (!emeralds) {
+                        emeralds = true;
+                    } else {
+                        System.out.println("You already have emeralds though... :(");
+                    }
+                } else if (currentTown.treasureHunt() == 3) {
+                    System.out.println("You got the opals!");
+                    if (!opals) {
+                        opals = true;
+                    } else {
+                        System.out.println("You already have opals though... :(");
+                    }
+                } else if (currentTown.treasureHunt() == 4) {
+                    System.out.println("You got nothing :(");
+                }
+
+                if (rubies) {
+                    if (emeralds) {
+                        if (opals) {
+                            System.out.println("Congratulations, you won!!!");
+                            gameOver = true;
+                        }
+                    }
+                }
+            }
+
+
         }
         else if (choice.equals("C") || choice.equals("c")) {
+            int beforeMoney = hunter.getGold();
             Scanner scan = new Scanner(System.in);
             System.out.println("How much do you wager?: ");
             int value = scan.nextInt();
@@ -202,6 +303,11 @@ public class TreasureHunter
             System.out.println("Choose a number between 1-12: ");
             int number = s.nextInt();
             currentTown.diceResult(number,value);
+            moneyWonInCasino += (hunter.getGold() - beforeMoney);
+            if (moneyWonInCasino >= 10){
+                moneyWonInCasino -= 10;
+                luck += 2;
+            }
         }
         else if (choice.equals("X") || choice.equals("x"))
         {
@@ -211,5 +317,6 @@ public class TreasureHunter
         {
             System.out.println("Yikes! That's an invalid option! Try again.");
         }
+
     }
 }
