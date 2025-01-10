@@ -179,6 +179,7 @@ public class TreasureHunter
                 System.out.println("(M)ove on to a different town.");
                 System.out.println("(L)ook for trouble!");
                 System.out.println("(H)unt for treasure!");
+                System.out.println("Go to the (C)asino and make bank!");
                 System.out.println("Give up the hunt and e(X)it.");
                 System.out.println();
                 System.out.print("What's your next move? ");
