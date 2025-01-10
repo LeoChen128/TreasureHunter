@@ -17,7 +17,7 @@ public class TreasureHunter
     private boolean hardMode;
     private boolean easyMode;
     private static boolean cheatMode;
-    private boolean gameOver;
+    private static boolean gameOver;
     private boolean rubies;
     private boolean emeralds;
     private boolean opals;
@@ -53,6 +53,14 @@ public class TreasureHunter
 
     public boolean getEasyMode(){
         return easyMode;
+    }
+
+    public static boolean getGameOver(){
+        return gameOver;
+    }
+
+    public static void setGameOver(boolean newGameOver){
+        gameOver = newGameOver;
     }
 
 
@@ -278,12 +286,24 @@ public class TreasureHunter
             currentTown.diceResult(number,value);
             moneyWonInCasino += (hunter.getGold() - beforeMoney);
             if (moneyWonInCasino >= 10){
-                moneyWonInCasino -= 10;
-                luck += 2;
+                while (moneyWonInCasino > 10){
+                    moneyWonInCasino -= 10;
+                    luck += 2;
+                }
             }
             else if (moneyWonInCasino <= -10){
-                luck -= 2;
-                moneyWonInCasino += 10;
+                while (moneyWonInCasino < -10) {
+                    luck -= 2;
+                    moneyWonInCasino += 10;
+                }
+            }
+            if (luck == -100){
+                System.out.println("Your luck is so low that we've run out of ways to save u. Game over buddy.");
+                gameOver = true;
+            }
+            if (luck == 100){
+                System.out.println("You were so lucky that u must've been cheating so the gang that runs the casino is after u. bye bye.");
+                gameOver = true;
             }
         }
         else if (choice.equals("X") || choice.equals("x"))

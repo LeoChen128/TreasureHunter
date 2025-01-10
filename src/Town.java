@@ -69,12 +69,36 @@ public class Town
         if (canLeaveTown)
         {
             String item = terrain.getNeededItem();
+            item = item.toUpperCase();
             printMessage = "You used your " + item + " to cross the " + terrain.getTerrainName() + ".";
             if (checkItemBreak())
             {
+                Random rand = new Random();
+                int deathChance = rand.nextInt(4) + 1;
                 if (hunter.getOriginalGold() != 25){
                     hunter.removeItemFromKit(item);
                     printMessage += "\nUnfortunately, your " + item + " broke.";
+                    if (item.equals("BOAT") && deathChance == 1){
+                        System.out.println("Unfortunately for you, your boat has sunk bc it was terrible and now ur dead. oops.");
+                        TreasureHunter.setGameOver(true);
+                    }
+                    else if (item.equals("WATER") && deathChance == 1){
+                        System.out.println("Unfortunately for you, ur water was tainted with lead bc the townspeople hated u and now ur dead. oops.");
+                        TreasureHunter.setGameOver(true);
+                    }
+                    else if (item.equals("MACHETE") && deathChance == 1){
+                        System.out.println("sadly, u have no idea how to use a machete so u messed up a little and now ur dead. oops.");
+                        TreasureHunter.setGameOver(true);
+                    }
+                    else if (item.equals("ROPE") && deathChance == 1){
+                        System.out.println("Unfortunately for you, ur rope broke bc it was basically a piece of string so u should've known better and now ur dead. oops.");
+                        TreasureHunter.setGameOver(true);
+                    }
+                    else if (item.equals("HORSE") && deathChance == 1){
+                        System.out.println("Unfortunately for you, ur horse hated u and so it bucked u off and u broke several bones including ur neck and now ur dead. oops.");
+                        TreasureHunter.setGameOver(true);
+                    }
+
                 }
             }
 
