@@ -225,14 +225,10 @@ public class TreasureHunter
             else if (!choices.getFirst().equals("H") && choices.contains("M")) {
 
                 System.out.println();
-                System.out.println("luck:");
-                System.out.println(luck);
-                Random rand = new Random();
+
                 int randomNum = currentTown.treasureHunt();
-                System.out.println("random num: " + randomNum);
 
                 if (randomNum <= 25 + luck) {
-                    System.out.println("random num: " + randomNum);
                     System.out.println("You got the rubies!");
                     if (!rubies) {
                         rubies = true;
@@ -240,7 +236,6 @@ public class TreasureHunter
                         System.out.println("You already have rubies though... :(");
                     }
                 } else if (randomNum >= (luck) + 25 && randomNum <= luck + 25 + 25 + luck) {
-                    System.out.println("random num: " + randomNum);
                     System.out.println("You got the emeralds!!");
                     if (!emeralds) {
                         emeralds = true;
@@ -248,7 +243,6 @@ public class TreasureHunter
                         System.out.println("You already have emeralds though... :(");
                     }
                 } else if (randomNum >= (2 * luck) + 50 && randomNum <= ((2 * luck) + 50) + 25 +luck) {
-                    System.out.println("random num: " + randomNum);
                     System.out.println("You got the opals!");
                     if (!opals) {
                         opals = true;
@@ -256,10 +250,6 @@ public class TreasureHunter
                         System.out.println("You already have opals though... :(");
                     }
                 } else if (randomNum > ((2 * luck) + 50) + 25 +luck){
-                    System.out.println("random num: ");
-                    System.out.println(randomNum);
-                    System.out.println("is greater than:");
-                    System.out.println((2 * luck) + 50 + 25 + luck);
                     System.out.println("You got nothing :(");
                 }
 
