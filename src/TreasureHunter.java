@@ -6,6 +6,7 @@
  */
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TreasureHunter
@@ -102,7 +103,7 @@ public class TreasureHunter
                     hardMode = true;
                 }
             } else {
-                System.out.println("Easy mode? (y/n): ");
+                System.out.print("Easy mode? (y/n): ");
                 String easy = scanner.nextLine().toLowerCase();
                 if (easy.equals("y")) {
                     if (!cheatMode) {
@@ -223,64 +224,45 @@ public class TreasureHunter
             }
             else if (!choices.getFirst().equals("H") && choices.contains("M")) {
 
-                int minFind;
-                int maxFind;
-
-                if (luck > 0){
-                    System.out.println();
-                    System.out.println(currentTown.treasureHunt());
-                    // NTS: THE NUMBERS FOR LUCK NEED TO BE CHANGED; SEE FREEFORM!
-                    if (currentTown.treasureHunt() >= 1 && currentTown.treasureHunt() <= 25 + luck) {
-                        System.out.println("You got the rubies!");
-                        if (!rubies) {
-                            rubies = true;
-                        } else {
-                            System.out.println("You already have rubies though... :(");
-                        }
-                    } else if (currentTown.treasureHunt() == 2) {
-                        System.out.println("You got the emeralds!!");
-                        if (!emeralds) {
-                            emeralds = true;
-                        } else {
-                            System.out.println("You already have emeralds though... :(");
-                        }
-                    } else if (currentTown.treasureHunt() == 3) {
-                        System.out.println("You got the opals!");
-                        if (!opals) {
-                            opals = true;
-                        } else {
-                            System.out.println("You already have opals though... :(");
-                        }
-                    } else if (currentTown.treasureHunt() == 4) {
-                        System.out.println("You got nothing :(");
-                    }
-                }
                 System.out.println();
-                System.out.println(currentTown.treasureHunt());
-                if (currentTown.treasureHunt() == 1) {
+                System.out.println("luck:");
+                System.out.println(luck);
+                Random rand = new Random();
+                int randomNum = currentTown.treasureHunt();
+                System.out.println("random num: " + randomNum);
+
+                if (randomNum <= 25 + luck) {
+                    System.out.println("random num: " + randomNum);
                     System.out.println("You got the rubies!");
                     if (!rubies) {
                         rubies = true;
                     } else {
                         System.out.println("You already have rubies though... :(");
                     }
-                } else if (currentTown.treasureHunt() == 2) {
+                } else if (randomNum >= (luck) + 25 && randomNum <= luck + 25 + 25 + luck) {
+                    System.out.println("random num: " + randomNum);
                     System.out.println("You got the emeralds!!");
                     if (!emeralds) {
                         emeralds = true;
                     } else {
                         System.out.println("You already have emeralds though... :(");
                     }
-                } else if (currentTown.treasureHunt() == 3) {
+                } else if (randomNum >= (2 * luck) + 50 && randomNum <= ((2 * luck) + 50) + 25 +luck) {
+                    System.out.println("random num: " + randomNum);
                     System.out.println("You got the opals!");
                     if (!opals) {
                         opals = true;
                     } else {
                         System.out.println("You already have opals though... :(");
                     }
-                } else if (currentTown.treasureHunt() == 4) {
+                } else if (randomNum > ((2 * luck) + 50) + 25 +luck){
+                    System.out.println("random num: ");
+                    System.out.println(randomNum);
+                    System.out.println("is greater than:");
+                    System.out.println((2 * luck) + 50 + 25 + luck);
                     System.out.println("You got nothing :(");
                 }
+
 
                 if (rubies) {
                     if (emeralds) {
@@ -307,6 +289,10 @@ public class TreasureHunter
             if (moneyWonInCasino >= 10){
                 moneyWonInCasino -= 10;
                 luck += 2;
+            }
+            else if (moneyWonInCasino <= -10){
+                luck -= 2;
+                moneyWonInCasino += 10;
             }
         }
         else if (choice.equals("X") || choice.equals("x"))
