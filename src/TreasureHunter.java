@@ -258,7 +258,7 @@ public class TreasureHunter
                     } else {
                         System.out.println("You already have opals though... :(");
                     }
-                } else if (randomNum > ((2 * luck) + 50) + 25 +luck){
+                } else{
                     System.out.println("You got nothing :(");
                 }
 
